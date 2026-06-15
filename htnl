@@ -1,0 +1,74 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Погода Mini App</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Telegram Web App SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Шапка с темой -->
+        <header class="header">
+            <div class="header-title">
+                <span class="logo">⛅</span>
+                <h1>Погода</h1>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Сменить тему">🌙</button>
+        </header>
+
+        <!-- Поиск города -->
+        <div class="search-section">
+            <div class="search-wrapper">
+                <input type="text" id="cityInput" class="search-input" placeholder="Поиск города..." autocomplete="off">
+                <button class="search-btn" id="searchBtn">🔍</button>
+            </div>
+            <div id="suggestions" class="suggestions-list"></div>
+        </div>
+
+        <!-- Индикатор загрузки -->
+        <div id="loader" class="loader hidden">
+            <div class="spinner"></div>
+            <p>Загрузка погоды...</p>
+        </div>
+
+        <!-- Основной контент -->
+        <main id="weatherContent" class="weather-content hidden">
+            <!-- Текущая погода -->
+            <section class="current-weather card">
+                <div class="city-name" id="cityName">---</div>
+                <div class="weather-condition" id="condition">---</div>
+                <div class="temp-main" id="tempMain">--°</div>
+                <div class="feels-like" id="feelsLike">Ощущается как --°</div>
+                <div class="weather-icon" id="weatherIcon">☁️</div>
+                <div class="details-grid">
+                    <div class="detail-item"><span>💧 Влажность</span><span id="humidity">--%</span></div>
+                    <div class="detail-item"><span>📊 Давление</span><span id="pressure">-- мм</span></div>
+                    <div class="detail-item"><span>🌬️ Ветер</span><span id="wind">-- м/с</span></div>
+                    <div class="detail-item"><span>🌧️ Осадки</span><span id="precip">--%</span></div>
+                </div>
+            </section>
+
+            <!-- Почасовой прогноз -->
+            <section class="hourly-section">
+                <h3>Почасовой прогноз</h3>
+                <div id="hourlyContainer" class="hourly-scroll"></div>
+            </section>
+
+            <!-- Прогноз на 7 дней -->
+            <section class="daily-section">
+                <h3>Прогноз на неделю</h3>
+                <div id="dailyContainer" class="daily-list"></div>
+            </section>
+        </main>
+
+        <!-- Сообщение об ошибке -->
+        <div id="errorMessage" class="error-message hidden"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
